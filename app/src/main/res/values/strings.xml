@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Restaurant Application</string>
+    <string name="app_name">Event Planner</string>
+    <string name="friends">Venner</string>
+    <string name="settings">Innstillinger</string>
+    <string name="restaurants">Restauranter</string>
+    <string name="first_name">Fornavn</string>
+    <string name="last_name">Etternavn</string>
+    <string name="name">Navn</string>
+    <string name="adress">Adresse</string>
+    <string name="ph_no">Telefon</string>
+    <string name="type">Type</string>
+    <string name="sms_service">SMS-tjeneste</string>
+    <string name="sms_service_summary">Påminnelse om event</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

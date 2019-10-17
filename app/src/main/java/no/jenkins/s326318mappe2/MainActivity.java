@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.action_search:
-                        Toast.makeText(MainActivity.this, "Recents", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_orders:
+                        showOrders();
                         break;
-                    case R.id.action_settings:
-                        Toast.makeText(MainActivity.this, "Favorites", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_friends:
+                        showFriends();
                         break;
-                    case R.id.action_navigation:
-                        Toast.makeText(MainActivity.this, "Nearby", Toast.LENGTH_SHORT).show();
+                    case R.id.menu_restaurant:
+                        showRestaurants();
                         break;
                 }
                 return true;
@@ -48,39 +48,15 @@ public class MainActivity extends AppCompatActivity {
         db = new DBHandler(this);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mymenu, menu);
-
-        return true;
-    }
-    //Action based on what you click in top menu
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.friends:
-                Toast.makeText(this, "venn", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.restaurants:
-                Toast.makeText(this, "restaurant", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.settings:
-                Intent intent=new Intent(this,SetPreferencesActivity.class);
-                startActivity(intent);
-            default:
-            // If we got here, the user's action was not recognized.
-            // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
-        }
-        return true;
-    }
-
-    public void showFriends(View v){
+    public void showFriends(){
 
     }
 
-    public void showRestaurants(View v){
+    public void showRestaurants(){
+
+    }
+
+    public void showOrders() {
 
     }
 

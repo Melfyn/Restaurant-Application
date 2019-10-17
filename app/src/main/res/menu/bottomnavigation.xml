@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:id="@+id/action_search"
-            android:title="menu_search"
-            android:icon="@drawable/ic_person_24px" />
-        <item android:id="@+id/action_settings"
-            android:title="menu_settings"
+        <item android:id="@+id/menu_orders"
+            android:title="@string/orders"
             android:icon="@drawable/ic_restaurant_24px" />
-        <item android:id="@+id/action_navigation"
-            android:title="menu_navigation"
+        <item android:id="@+id/menu_friends"
+            android:title="@string/friends"
+            android:icon="@drawable/ic_person_24px" />
+        <item android:id="@+id/menu_restaurant"
+            android:title="@string/restaurants"
+            android:icon="@drawable/ic_restaurant_24px" />
+        <item android:id="@+id/menu_settings"
+            android:title="@string/settings"
             android:icon="@drawable/ic_settings_applications_24px" />
 </menu>

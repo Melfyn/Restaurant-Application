@@ -1,6 +1,9 @@
-package no.jenkins.s326318mappe2;
+package no.jenkins.s326318mappe2.classes;
 
 import java.util.ArrayList;
+
+import no.jenkins.s326318mappe2.classes.Friend;
+import no.jenkins.s326318mappe2.classes.Restaurant;
 
 public class RestaurantOrder {
 

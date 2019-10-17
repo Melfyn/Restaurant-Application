@@ -1,4 +1,4 @@
-package no.jenkins.s326318mappe2;
+package no.jenkins.s326318mappe2.classes;
 
 public class Friend {
 

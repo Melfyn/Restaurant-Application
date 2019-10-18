@@ -1,6 +1,8 @@
 package no.jenkins.s326318mappe2.classes;
 
-public class Restaurant {
+import java.io.Serializable;
+
+public class Restaurant implements Serializable {
 
     private Long _ID;
     private String name;

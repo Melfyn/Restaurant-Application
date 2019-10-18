@@ -1,6 +1,8 @@
 package no.jenkins.s326318mappe2.classes;
 
-public class OrderAndFriends {
+import java.io.Serializable;
+
+public class OrderAndFriends implements Serializable {
 
     private Long o_ID;
     private Long f_ID;

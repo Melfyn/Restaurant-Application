@@ -5,6 +5,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.ArrayList;
+
+import no.jenkins.s326318mappe2.classes.Restaurant;
+
 public class DBHandler extends SQLiteOpenHelper {
     // Friends table
     static String TABLE_FRIENDS = "Friends";
@@ -64,5 +68,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTAURANT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTAURANT_ORDERS);
         onCreate(db);
+    }
+
+    public ArrayList<Restaurant> getRestaurants() {
+        return new ArrayList<Restaurant>();
     }
 }

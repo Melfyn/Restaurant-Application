@@ -1,6 +1,8 @@
 package no.jenkins.s326318mappe2.classes;
 
-public class Friend {
+import java.io.Serializable;
+
+public class Friend implements Serializable {
 
     private Long _ID;
     private String name;

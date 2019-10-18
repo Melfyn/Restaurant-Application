@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRestaurant(){
-        ArrayList<Restaurant> items = new ArrayList<>(); // Replace new arraylist with arraylist from database
+        //ArrayList<Restaurant> items = new ArrayList<>(); // Replace new arraylist with arraylist from database
+        ArrayList<Restaurant> items = db.getRestaurants();
         RestaurantAdapter adapter = new RestaurantAdapter(getApplicationContext(), items);
         ListView resView = findViewById(R.id.main_listview);
         resView.setAdapter(adapter);
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 loadRestaurant();
             }
+
             // de andre ac greiene
         }
     }

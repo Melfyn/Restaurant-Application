@@ -2,12 +2,12 @@ package no.jenkins.s326318mappe2.classes;
 
 import java.io.Serializable;
 
-public class OrderAndFriends implements Serializable {
+public class FriendsInOrder implements Serializable {
 
     private Long o_ID;
     private Long f_ID;
 
-    public OrderAndFriends(Long o_ID, Long f_ID) {
+    public FriendsInOrder(Long o_ID, Long f_ID) {
         this.o_ID = o_ID;
         this.f_ID = f_ID;
     }

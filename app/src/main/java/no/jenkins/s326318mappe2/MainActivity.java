@@ -20,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import no.jenkins.s326318mappe2.adapter.FriendAdapter;
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
 import no.jenkins.s326318mappe2.classes.Friend;
 import no.jenkins.s326318mappe2.classes.Restaurant;
@@ -70,6 +71,28 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, FriendActivity.class);
             startActivityForResult(intent, ac_friend);
         });
+        loadFriends();
+        ListView friendView = findViewById(R.id.main_listview);
+        friendView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getAdapter() instanceof FriendAdapter){
+                    Friend friend = (Friend) ((FriendAdapter) adapterView.getAdapter()).getItem(i);
+                    Bundle b = new Bundle();
+                    b.putSerializable("object",friend);
+                    Intent intent = new Intent(MainActivity.this, FriendActivity.class);
+                    intent.putExtras(b);
+                    startActivityForResult(intent, ac_friend);
+                }
+            }
+        });
+    }
+
+    public void loadFriends(){
+        ArrayList<Friend> items = db.getFriends();
+        FriendAdapter adapter = new FriendAdapter(getApplicationContext(), items);
+        ListView friendView = findViewById(R.id.main_listview);
+        friendView.setAdapter(adapter);
     }
 
     public void showRestaurants(){
@@ -96,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadRestaurant(){
-        //ArrayList<Restaurant> items = new ArrayList<>(); // Replace new arraylist with arraylist from database
         ArrayList<Restaurant> items = db.getRestaurants();
         RestaurantAdapter adapter = new RestaurantAdapter(getApplicationContext(), items);
         ListView resView = findViewById(R.id.main_listview);
@@ -111,6 +133,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void loadOrder(){
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -119,8 +145,12 @@ public class MainActivity extends AppCompatActivity {
             {
                 loadRestaurant();
             }
-
-            // de andre ac greiene
+            if(requestCode == ac_friend){
+                loadFriends();
+            }
+            if(requestCode == ac_order){
+                loadOrder();
+            }
         }
     }
 }

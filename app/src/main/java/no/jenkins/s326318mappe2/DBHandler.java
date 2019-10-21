@@ -43,7 +43,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String O_ID = "OrderID";
 
 
-    static int DATABASE_VERSION = 1;
+    static int DATABASE_VERSION = 3;
     static String DATABASE_NAME = "RestaurantAppDB";
 
     public DBHandler(Context context) {
@@ -85,6 +85,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_FRIENDS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTAURANT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTAURANT_ORDERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FRIENDS_IN_ORDER);
         onCreate(db);
     }
 
@@ -110,8 +111,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 Restaurant restaurant = new Restaurant();
                 restaurant.set_ID(cursor.getLong(0));
                 restaurant.setName(cursor.getString(1));
-                restaurant.setPhoneNumber(cursor.getString(2));
-                restaurant.setType(cursor.getString(3));
+                restaurant.setAdress(cursor.getString(2));
+                restaurant.setPhoneNumber(cursor.getString(3));
+                restaurant.setType(cursor.getString(4));
                 restaurantList.add(restaurant);
             } while (cursor.moveToNext());
             cursor.close();
@@ -153,7 +155,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public ArrayList<Friend> getFriends() {
         ArrayList<Friend> friendsList = new ArrayList<Friend>();
-        String selectQuery = "SELECT * FROM " + TABLE_RESTAURANT;
+        String selectQuery = "SELECT * FROM " + TABLE_FRIENDS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {

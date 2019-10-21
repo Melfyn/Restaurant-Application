@@ -41,6 +41,11 @@ public class RestaurantActivity extends AppCompatActivity {
             loadBres();
             View b = findViewById(R.id.add_restaurant);
             b.setVisibility(View.GONE);
+        } else {
+            View b = findViewById(R.id.delete_restaurant);
+            b.setVisibility(View.GONE);
+            View bTwo = findViewById(R.id.update_restaurant);
+            bTwo.setVisibility(View.GONE);
         }
 
         startKeyListeners();
@@ -57,15 +62,31 @@ public class RestaurantActivity extends AppCompatActivity {
 
     public void startKeyListeners() {
         findViewById(R.id.add_restaurant).setOnClickListener(view -> addOneRestaurant());
+        findViewById(R.id.update_restaurant).setOnClickListener(view -> updateOneRestaurant());
+        findViewById(R.id.delete_restaurant).setOnClickListener(view -> deleteRestaurant());
     }
 
     public void addOneRestaurant() {
-        setResult(Activity.RESULT_OK);
         Restaurant res = new Restaurant(inputName.getText().toString(), inputAdress.getText().toString(), inputPhone.getText().toString(),inputType.getText().toString());
         db.addRestaurant(res);
         Log.d("Legg inn: ", "legger til kontakter");
+        setResult(Activity.RESULT_OK);
         finish();
     }
 
+    public void updateOneRestaurant() {
+        Restaurant res = new Restaurant(bres.get_ID(), inputName.getText().toString(), inputAdress.getText().toString(), inputPhone.getText().toString(),inputType.getText().toString());
+        db.updateRestaurant(res);
+        Log.d("Update: ", "Update restaurant");
+        setResult(Activity.RESULT_OK);
+        finish();
+    }
+
+    public void deleteRestaurant(){
+        db.deleteRestaurant(bres.get_ID());
+        Log.d("Delete", "Delete restaurant");
+        setResult(Activity.RESULT_OK);
+        finish();
+    }
 
 }

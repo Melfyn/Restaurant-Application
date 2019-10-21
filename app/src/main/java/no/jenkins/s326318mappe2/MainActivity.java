@@ -22,8 +22,10 @@ import java.util.ArrayList;
 
 import no.jenkins.s326318mappe2.adapter.FriendAdapter;
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
+import no.jenkins.s326318mappe2.adapter.RestaurantOrderAdapter;
 import no.jenkins.s326318mappe2.classes.Friend;
 import no.jenkins.s326318mappe2.classes.Restaurant;
+import no.jenkins.s326318mappe2.classes.RestaurantOrder;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -131,10 +133,28 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, OrderActivity.class);
             startActivityForResult(intent, ac_order);
         });
+        loadOrder();
+        ListView resView = findViewById(R.id.main_listview);
+        resView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(adapterView.getAdapter() instanceof RestaurantOrderAdapter){
+                    RestaurantOrder resOrder = (RestaurantOrder) ((RestaurantOrderAdapter) adapterView.getAdapter()).getItem(i);
+                    Bundle b = new Bundle();
+                    b.putSerializable("object",resOrder);
+                    Intent intent = new Intent(MainActivity.this, OrderActivity.class);
+                    intent.putExtras(b);
+                    startActivityForResult(intent, ac_order);
+                }
+            }
+        });
     }
 
     public void loadOrder(){
-
+        ArrayList<RestaurantOrder> items = db.getRestaurantOrder();
+        RestaurantOrderAdapter adapter = new RestaurantOrderAdapter(getApplicationContext(), items);
+        ListView resView = findViewById(R.id.main_listview);
+        resView.setAdapter(adapter);
     }
 
     @Override

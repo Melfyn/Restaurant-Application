@@ -43,7 +43,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String O_ID = "OrderID";
 
 
-    static int DATABASE_VERSION = 3;
+    static int DATABASE_VERSION = 11;
     static String DATABASE_NAME = "RestaurantAppDB";
 
     public DBHandler(Context context) {
@@ -62,13 +62,21 @@ public class DBHandler extends SQLiteOpenHelper {
                  RESTAURANT_PH_NO + " TEXT," + RESTAURANT_TYPE + " TEXT" + ")";
         Log.d("SQL", CREATE_TABLE_RESTAURANT);
         db.execSQL(CREATE_TABLE_RESTAURANT);
+        /*
+        String CREATE_TABLE_RESTAURANT_ORDERS = "CREATE TABLE " + TABLE_RESTAURANT_ORDERS + "(" + ORDER_ID +
+                " INTEGER PRIMARY KEY," + ORDER_DATE + " TEXT," + ORDER_TIME + " TEXT," + ORDER_RESTAURANT +
+                " INTEGER" + ")"; //ORDER_FRIEND + " INTEGER," +
+              //  "FOREIGN KEY ("+ORDER_RESTAURANT+") REFERENCES "+TABLE_RESTAURANT+"("+RESTAURANT_ID+") )";
+               /* "FOREIGN KEY ("+ORDER_FRIEND+") REFERENCES "+TABLE_FRIENDS+"("+FRIEND_ID+") )"; ))
+        //  + " FOREIGN KEY ("+TASK_CAT+") REFERENCES "+CAT_TABLE+"("+CAT_ID+"));"; */
+      //  Log.d("SQL", CREATE_TABLE_RESTAURANT_ORDERS);
+      //  db.execSQL(CREATE_TABLE_RESTAURANT_ORDERS);
 
         String CREATE_TABLE_RESTAURANT_ORDERS = "CREATE TABLE " + TABLE_RESTAURANT_ORDERS + "(" + ORDER_ID +
                 " INTEGER PRIMARY KEY," + ORDER_DATE + " TEXT," + ORDER_TIME + " TEXT," + ORDER_RESTAURANT +
-                " INTEGER," + ORDER_FRIEND + " INTEGER," +
-                "FOREIGN KEY ("+ORDER_RESTAURANT+") REFERENCES "+TABLE_RESTAURANT+"("+RESTAURANT_ID+")," +
-                "FOREIGN KEY ("+ORDER_FRIEND+") REFERENCES "+TABLE_FRIENDS+"("+FRIEND_ID+") )";
-        //  + " FOREIGN KEY ("+TASK_CAT+") REFERENCES "+CAT_TABLE+"("+CAT_ID+"));";
+                " INTEGER," + "FOREIGN KEY ("+ORDER_RESTAURANT+") REFERENCES "+TABLE_RESTAURANT+"("+RESTAURANT_ID+") )";
+               /* "FOREIGN KEY ("+ORDER_FRIEND+") REFERENCES "+TABLE_FRIENDS+"("+FRIEND_ID+") )"; ))
+        //  + " FOREIGN KEY ("+TASK_CAT+") REFERENCES "+CAT_TABLE+"("+CAT_ID+"));"; */
         Log.d("SQL", CREATE_TABLE_RESTAURANT_ORDERS);
         db.execSQL(CREATE_TABLE_RESTAURANT_ORDERS);
 
@@ -191,17 +199,67 @@ public class DBHandler extends SQLiteOpenHelper {
         return update;
     }
 
-    // Restaurant orders methods
+
     public void addRestaurantOrder(RestaurantOrder restaurantOrder, FriendsInOrder friendsInOrder) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(ORDER_DATE, restaurantOrder.getDate());
         values.put(ORDER_TIME, restaurantOrder.getTime());
-        values.put(ORDER_RESTAURANT, restaurantOrder.getRestaurant().getName()); // usikker på denne
-        db.insert(TABLE_RESTAURANT, null, values);
+        values.put(ORDER_RESTAURANT, restaurantOrder.getRestaurant_id()); // usikker på denne
+        db.insert(TABLE_RESTAURANT_ORDERS, null, values);
 
+        ContentValues valuesOrder = new ContentValues();
+        valuesOrder.put(F_ID, friendsInOrder.getF_ID());
+        valuesOrder.put(O_ID, friendsInOrder.getO_ID());
+        db.insert(TABLE_FRIENDS_IN_ORDER,null, valuesOrder);
         // add values to friendsinorder table
 
         db.close();
+    }
+    /*
+    public void addRestaurantOrder(RestaurantOrder restaurantOrder) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(ORDER_DATE, restaurantOrder.getDate());
+        values.put(ORDER_TIME, restaurantOrder.getTime());
+        values.put(ORDER_RESTAURANT, restaurantOrder.getRestaurant().getName());
+        values.put(ORDER_FRIEND, "test");
+        db.insert(TABLE_RESTAURANT_ORDERS, null, values);
+
+        db.close();
+    }
+    */
+    public ArrayList<RestaurantOrder> getRestaurantOrder(){
+        ArrayList<RestaurantOrder> resOrderList = new ArrayList<RestaurantOrder>();
+        String selectQuery = "SELECT * FROM " + TABLE_RESTAURANT_ORDERS;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                RestaurantOrder resOrder = new RestaurantOrder();
+                resOrder.set_ID(cursor.getLong(0));
+                resOrder.setDate(cursor.getString(1));
+                resOrder.setTime(cursor.getString(2));
+                resOrder.setRestaurant_id(cursor.getInt(3));
+//                resOrder.setRestaurant(findRestaurant(cursor.getInt(4))); // dette må undersøkes
+                resOrderList.add(resOrder);
+            } while (cursor.moveToNext());
+            cursor.close();
+            db.close();
+        }
+        return resOrderList;
+    }
+
+    public Restaurant findRestaurant(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RESTAURANT, new String[]{
+                        RESTAURANT_ID, RESTAURANT_NAME, RESTAURANT_ADRESS, RESTAURANT_PH_NO, RESTAURANT_TYPE}, RESTAURANT_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null) cursor.moveToFirst();
+        Restaurant restaurant = new
+                Restaurant(Long.parseLong(cursor.getString(0)), cursor.getString(1),cursor.getString(2), cursor.getString(3), cursor.getString(4));
+        cursor.close();
+        db.close();
+        return restaurant;
     }
 }

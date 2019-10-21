@@ -12,9 +12,28 @@ public class RestaurantOrder implements Serializable {
     private String date;
     private String time;
     private Restaurant restaurant;
+    private int restaurant_id;
     private ArrayList<Friend> friends;
 
     public RestaurantOrder() {
+    }
+
+    public RestaurantOrder(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+
+    /*
+    public RestaurantOrder(String date, String time, Restaurant restaurant) {
+        this.date = date;
+        this.time = time;
+        this.restaurant = restaurant;
+    }
+    */
+    public RestaurantOrder(String date, String time, int restaurant_id) {
+        this.date = date;
+        this.time = time;
+        this.restaurant_id = restaurant_id;
     }
 
     public RestaurantOrder(String date, String time, Restaurant restaurant, ArrayList<Friend> friends) {
@@ -30,6 +49,14 @@ public class RestaurantOrder implements Serializable {
         this.time = time;
         this.restaurant = restaurant;
         this.friends = friends;
+    }
+
+    public int getRestaurant_id() {
+        return restaurant_id;
+    }
+
+    public void setRestaurant_id(int restaurant_id) {
+        this.restaurant_id = restaurant_id;
     }
 
     public Long get_ID() { return _ID; }

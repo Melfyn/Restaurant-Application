@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import no.jenkins.s326318mappe2.classes.Friend;
@@ -34,6 +35,13 @@ public class FriendActivity extends AppCompatActivity {
         }
         if(bfriend != null){
             loadBfriend();
+            View b = findViewById(R.id.add_friend);
+            b.setVisibility(View.GONE);
+        } else {
+            View b = findViewById(R.id.delete_friend);
+            b.setVisibility(View.GONE);
+            View bTwo = findViewById(R.id.update_friend);
+            bTwo.setVisibility(View.GONE);
         }
 
         startKeyListeners();

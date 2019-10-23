@@ -45,7 +45,12 @@ public class RestaurantOrderAdapter extends BaseAdapter {
         RestaurantOrder resOrder = items.get(i);
         ((TextView) view.findViewById(R.id.adapter_o_date)).setText(resOrder.getDate());
         ((TextView) view.findViewById(R.id.adapter_o_time)).setText(resOrder.getTime());
-        ((TextView) view.findViewById(R.id.adapter_o_restaurant)).setText(" " +resOrder.getRestaurant_id());
+        if(resOrder.getRestaurant() != null) {
+            ((TextView) view.findViewById(R.id.adapter_o_restaurant)).setText(resOrder.getRestaurant().getName());
+        } else {
+            ((TextView) view.findViewById(R.id.adapter_o_restaurant)).setText(resOrder.getRestaurant_id());
+        }
+
         return view;
     }
 }

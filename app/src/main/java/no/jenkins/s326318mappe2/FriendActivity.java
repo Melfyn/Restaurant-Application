@@ -45,6 +45,7 @@ public class FriendActivity extends AppCompatActivity {
         }
 
         startKeyListeners();
+//        Log.d("se venneobjektet",bfriend.get_ID()+ " "+ bfriend.getName()+" "+ bfriend.getPhoneNumber());
     }
 
     public void loadBfriend(){

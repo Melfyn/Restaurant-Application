@@ -27,7 +27,7 @@ public class OrderActivity extends AppCompatActivity{
     EditText inputDate;
     EditText inputTime;
     Spinner inputRestaurant;
-    private Restaurant storedRestaurant;
+    private Long id;
 
     DBHandler db;
 
@@ -58,6 +58,7 @@ public class OrderActivity extends AppCompatActivity{
         }
         startKeyListeners();
         loadRestaurant();
+//        Log.d("se ordreobjektet", bResOrder.get_ID()+ " "+ bResOrder.getDate()+ " "+ bResOrder.getTime() +" "+ bResOrder.getRestaurant_id());
     }
 
     public void loadBResOrder(){
@@ -75,7 +76,7 @@ public class OrderActivity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Restaurant res = (Restaurant) adapterView.getSelectedItem();
-                bResOrder = new RestaurantOrder();
+          //      bResOrder = new RestaurantOrder();
                 int id = (int) (long) res.get_ID();
                 bResOrder.setRestaurant_id(id);
 
@@ -86,8 +87,6 @@ public class OrderActivity extends AppCompatActivity{
 
             }
         });
-
-
     }
 
     public void startKeyListeners(){
@@ -103,7 +102,6 @@ public class OrderActivity extends AppCompatActivity{
         int testOne = 1;
         int testTwo = 2;
         Log.d("testrestaurant", testRestaurant+" ");
-     //   RestaurantOrder resOrder = new RestaurantOrder(inputDate.getText().toString(), inputTime.getText().toString(), testRestaurant);
         FriendsInOrder friendsOrder = new FriendsInOrder(testOne,testTwo);
         db.addRestaurantOrder(bResOrder,friendsOrder);
         Log.d("Legg inn: ", "legger til bestilling");
@@ -112,8 +110,8 @@ public class OrderActivity extends AppCompatActivity{
     }
 
     public void deleteOrder(){
-        db.deleteFriend(bResOrder.get_ID());
-        Log.d("Delete", "Delete friend");
+        db.deleteOrder(bResOrder.get_ID());
+        Log.d("Delete", "Delete order");
         setResult(Activity.RESULT_OK);
         finish();
     }

@@ -43,7 +43,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String O_ID = "OrderID";
 
 
-    static int DATABASE_VERSION = 11;
+    static int DATABASE_VERSION = 13;
     static String DATABASE_NAME = "RestaurantAppDB";
 
     public DBHandler(Context context) {
@@ -261,5 +261,13 @@ public class DBHandler extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return restaurant;
+    }
+
+    public void deleteOrder(Long input_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_RESTAURANT_ORDERS, ORDER_ID + " =? ",
+                new String[]{Long.toString(input_id)});
+        db.close();
+
     }
 }

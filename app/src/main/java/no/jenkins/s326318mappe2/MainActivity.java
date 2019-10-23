@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(adapterView.getAdapter() instanceof RestaurantOrderAdapter){
                     RestaurantOrder resOrder = (RestaurantOrder) ((RestaurantOrderAdapter) adapterView.getAdapter()).getItem(i);
+                    Log.d("ordre:",resOrder.get_ID()+"");
                     Bundle b = new Bundle();
                     b.putSerializable("object",resOrder);
                     Intent intent = new Intent(MainActivity.this, OrderActivity.class);
@@ -155,6 +157,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void loadOrder(){
         ArrayList<RestaurantOrder> items = db.getRestaurantOrder();
+        for(RestaurantOrder order : items) {
+            Restaurant res = db.findRestaurant(order.getRestaurant_id());
+            order.setRestaurant(res);
+        }
         RestaurantOrderAdapter adapter = new RestaurantOrderAdapter(getApplicationContext(), items);
         ListView resView = findViewById(R.id.main_listview);
         resView.setAdapter(adapter);

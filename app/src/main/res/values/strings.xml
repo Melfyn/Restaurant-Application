@@ -19,4 +19,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="add_restaurant_btn">Legg til restaurant</string>
+    <string name="update_restaurant_btn">Oppdater restaurant</string>
+    <string name="delete_restaurant_btn">Slett restaurant</string>
+    <string name="add_friend_btn">Legg til venn</string>
+    <string name="update_friend_btn">Oppdater venn</string>
+    <string name="delete_friend_btn">Slett venn</string>
+    <string name="add_order_btn">Legg til bestilling</string>
+    <string name="delete_order_btn">Slett bestilling</string>
+    <string name="add_friends_to_order_btn">Legg til venner</string>
 </resources>

@@ -59,7 +59,6 @@ public class RestaurantActivity extends AppCompatActivity {
         inputType.setText(bres.getType());
     }
 
-
     public void startKeyListeners() {
         findViewById(R.id.add_restaurant).setOnClickListener(view -> addOneRestaurant());
         findViewById(R.id.update_restaurant).setOnClickListener(view -> updateOneRestaurant());

@@ -3,6 +3,7 @@ package no.jenkins.s326318mappe2;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,6 +54,8 @@ public class OrderActivity extends AppCompatActivity{
             loadBResOrder();
             View b = findViewById(R.id.add_order);
             b.setVisibility(View.GONE);
+            View bf = findViewById(R.id.add_friends_order);
+            bf.setVisibility(View.GONE);
         } else {
             bResOrder = new RestaurantOrder();
             bFriendsInOrder = new FriendsInOrder();
@@ -61,7 +64,6 @@ public class OrderActivity extends AppCompatActivity{
         }
         startKeyListeners();
         loadRestaurant();
-//        Log.d("se ordreobjektet", bResOrder.get_ID()+ " "+ bResOrder.getDate()+ " "+ bResOrder.getTime() +" "+ bResOrder.getRestaurant_id());
     }
 
     public void loadBResOrder(){
@@ -92,7 +94,13 @@ public class OrderActivity extends AppCompatActivity{
 
     public void startKeyListeners(){
         findViewById(R.id.add_order).setOnClickListener(view -> addOrder());
+        findViewById(R.id.add_friends_order).setOnClickListener(view -> addFriends());
         findViewById(R.id.delete_order).setOnClickListener(view -> deleteOrder());
+    }
+
+    public void addFriends(){
+        Intent intent=new Intent(this,AddFriendsInOrder.class);
+        startActivity(intent);
     }
 
     public void addOrder(){
@@ -100,7 +108,6 @@ public class OrderActivity extends AppCompatActivity{
         bResOrder.setTime(inputTime.getText().toString());
         bResOrder.setRestaurant_id(id);
 
-        int testOne = 1;
         int testTwo = 2;
 
 

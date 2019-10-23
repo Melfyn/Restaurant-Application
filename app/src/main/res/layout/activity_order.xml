@@ -40,6 +40,13 @@
         android:layout_height="wrap_content"
         android:textColor="@color/colorFont"/>
 
+    <Button
+        android:id="@+id/add_friends_order"
+        android:text="@string/add_friends_to_order_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    </Button>
+
     <Spinner
         android:id="@+id/restaurant_spinner"
         android:layout_width="wrap_content"
@@ -47,13 +54,13 @@
 
     <Button
         android:id="@+id/add_order"
-        android:text="Legg til"
+        android:text="@string/add_order_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/delete_order"
-        android:text="Slett bestilling"
+        android:text="@string/delete_order_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

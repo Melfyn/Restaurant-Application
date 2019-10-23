@@ -13,6 +13,7 @@
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".FriendActivity" />
         <activity android:name=".FriendsInOrderActivity" />
+        <activity android:name=".AddFriendsInOrder" />
         <activity android:name=".MainActivity" >
 
             <intent-filter>
@@ -23,5 +24,4 @@
         </activity>
         <activity android:name=".SetPreferencesActivity" />
     </application>
-
 </manifest>

@@ -75,8 +75,9 @@ public class OrderActivity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Restaurant res = (Restaurant) adapterView.getSelectedItem();
-                 //   bResOrder.setRestaurant(res);
-
+                bResOrder = new RestaurantOrder();
+                int id = (int) (long) res.get_ID();
+                bResOrder.setRestaurant_id(id);
 
             }
 
@@ -95,17 +96,16 @@ public class OrderActivity extends AppCompatActivity{
     }
 
     public void addOrder(){
-    //    Long orderRes =  bResOrder.get_ID();
-
+        bResOrder.setDate(inputDate.getText().toString());
+        bResOrder.setTime(inputTime.getText().toString());
         int testRestaurant = 1;
-        // Long testOne = parseLong("1");
-        //Long testTwo = parseLong("1");
+
         int testOne = 1;
         int testTwo = 2;
         Log.d("testrestaurant", testRestaurant+" ");
-        RestaurantOrder resOrder = new RestaurantOrder(inputDate.getText().toString(), inputTime.getText().toString(), testRestaurant);
+     //   RestaurantOrder resOrder = new RestaurantOrder(inputDate.getText().toString(), inputTime.getText().toString(), testRestaurant);
         FriendsInOrder friendsOrder = new FriendsInOrder(testOne,testTwo);
-        db.addRestaurantOrder(resOrder,friendsOrder);
+        db.addRestaurantOrder(bResOrder,friendsOrder);
         Log.d("Legg inn: ", "legger til bestilling");
         setResult(Activity.RESULT_OK);
         finish();

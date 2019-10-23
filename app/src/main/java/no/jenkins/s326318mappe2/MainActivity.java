@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_restaurant:
                         showRestaurants();
                         break;
+                    case R.id.menu_settings:
+                        showSettings();
+                        break;
                 }
                 return true;
             }
@@ -172,5 +175,10 @@ public class MainActivity extends AppCompatActivity {
                 loadOrder();
             }
         }
+    }
+
+    public void showSettings(){
+        Intent intent=new Intent(this,SetPreferencesActivity.class);
+        startActivity(intent);
     }
 }

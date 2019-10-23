@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
 import no.jenkins.s326318mappe2.classes.Friend;
@@ -23,11 +24,11 @@ import static java.lang.Long.parseLong;
 
 public class OrderActivity extends AppCompatActivity{
     private RestaurantOrder bResOrder;
-    private RestaurantOrder bRes;
+    private FriendsInOrder bFriendsInOrder;
     EditText inputDate;
     EditText inputTime;
     Spinner inputRestaurant;
-    private Long id;
+    private int id;
 
     DBHandler db;
 
@@ -53,6 +54,8 @@ public class OrderActivity extends AppCompatActivity{
             View b = findViewById(R.id.add_order);
             b.setVisibility(View.GONE);
         } else {
+            bResOrder = new RestaurantOrder();
+            bFriendsInOrder = new FriendsInOrder();
             View b = findViewById(R.id.delete_order);
             b.setVisibility(View.GONE);
         }
@@ -76,10 +79,8 @@ public class OrderActivity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Restaurant res = (Restaurant) adapterView.getSelectedItem();
-          //      bResOrder = new RestaurantOrder();
-                int id = (int) (long) res.get_ID();
-                bResOrder.setRestaurant_id(id);
 
+                  id = (int) (long) res.get_ID();
             }
 
             @Override
@@ -97,22 +98,32 @@ public class OrderActivity extends AppCompatActivity{
     public void addOrder(){
         bResOrder.setDate(inputDate.getText().toString());
         bResOrder.setTime(inputTime.getText().toString());
-        int testRestaurant = 1;
+        bResOrder.setRestaurant_id(id);
 
         int testOne = 1;
         int testTwo = 2;
-        Log.d("testrestaurant", testRestaurant+" ");
-        FriendsInOrder friendsOrder = new FriendsInOrder(testOne,testTwo);
-        db.addRestaurantOrder(bResOrder,friendsOrder);
+
+
+        //bFriendsInOrder.setOrder_ID(1);
+        bFriendsInOrder.setFriend_ID(testTwo);
+
+
+        db.addRestaurantOrder(bResOrder,bFriendsInOrder);
         Log.d("Legg inn: ", "legger til bestilling");
         setResult(Activity.RESULT_OK);
         finish();
     }
 
     public void deleteOrder(){
+        List<FriendsInOrder> items = db.getFriendsInOrder();
+        for(int i = 0; i < items.size(); i++) {
+            db.deleteFriendsInOrder(bResOrder.get_ID());
+        }
+
         db.deleteOrder(bResOrder.get_ID());
         Log.d("Delete", "Delete order");
         setResult(Activity.RESULT_OK);
         finish();
     }
+
 }

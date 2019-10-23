@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_settings:
                         showSettings();
                         break;
+                    case R.id.menu_friendsinorder:
+                        showFriendsInOrder();
+
                 }
                 return true;
             }
@@ -185,6 +188,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void showSettings(){
         Intent intent=new Intent(this,SetPreferencesActivity.class);
+        startActivity(intent);
+    }
+
+    public void showFriendsInOrder(){
+        Intent intent=new Intent(this,FriendsInOrderActivity.class);
         startActivity(intent);
     }
 }

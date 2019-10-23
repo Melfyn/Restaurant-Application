@@ -9,10 +9,15 @@ public class FriendsInOrder implements Serializable {
     private int order_ID;
     private int friend_ID;
 
+    public FriendsInOrder() {
+    }
+    /*
     public FriendsInOrder(Long o_ID, Long f_ID) {
         this.o_ID = o_ID;
         this.f_ID = f_ID;
     }
+
+     */
 
     public FriendsInOrder(int order_ID, int friend_ID) {
         this.order_ID = order_ID;

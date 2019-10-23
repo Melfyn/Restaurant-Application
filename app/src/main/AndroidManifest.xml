@@ -12,7 +12,9 @@
         <activity android:name=".OrderActivity"></activity>
         <activity android:name=".RestaurantActivity" />
         <activity android:name=".FriendActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".FriendsInOrderActivity" />
+        <activity android:name=".MainActivity" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

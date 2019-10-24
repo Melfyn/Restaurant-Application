@@ -1,5 +1,6 @@
 package no.jenkins.s326318mappe2;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -11,26 +12,33 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
 import no.jenkins.s326318mappe2.adapter.RestaurantSpinnerAdapter;
 import no.jenkins.s326318mappe2.classes.Friend;
+import no.jenkins.s326318mappe2.classes.FriendH;
 import no.jenkins.s326318mappe2.classes.FriendsInOrder;
 import no.jenkins.s326318mappe2.classes.Restaurant;
 import no.jenkins.s326318mappe2.classes.RestaurantOrder;
 
 import static java.lang.Long.parseLong;
 
-public class OrderActivity extends AppCompatActivity{
+public class OrderActivity extends AppCompatActivity {
     private RestaurantOrder bResOrder;
     private FriendsInOrder bFriendsInOrder;
+    private ArrayList<Friend> attendingFriendsList;
     EditText inputDate;
     EditText inputTime;
+    TextView attendingFriendsView;
     Spinner inputRestaurant;
     private int id;
+
+    int ac_friends = 266;
 
     DBHandler db;
 
@@ -65,6 +73,7 @@ public class OrderActivity extends AppCompatActivity{
         }
         startKeyListeners();
         loadRestaurant();
+        showAttendingFriends();
     }
 
     public void loadBResOrder(){
@@ -100,8 +109,9 @@ public class OrderActivity extends AppCompatActivity{
     }
 
     public void addFriends(){
+
         Intent intent=new Intent(this,AddFriendsInOrder.class);
-        startActivity(intent);
+        startActivityForResult(intent,ac_friends);
     }
 
     public void addOrder(){
@@ -109,12 +119,21 @@ public class OrderActivity extends AppCompatActivity{
         bResOrder.setTime(inputTime.getText().toString());
         bResOrder.setRestaurant_id(id);
 
+        //test
         int testTwo = 2;
 
+        ArrayList<FriendsInOrder> friendsInOrderList = new ArrayList<FriendsInOrder>();
+        for(Friend friend : attendingFriendsList){
+            if(friend.getAttending() != false){
+                FriendsInOrder oneFriend = new FriendsInOrder();
+                int friend_id = (int) (long) friend.get_ID();
+                oneFriend.setOrder_ID(id);
+                oneFriend.setFriend_ID(friend_id);
+                friendsInOrderList.add(oneFriend);
+            }
+        }
 
-        //bFriendsInOrder.setOrder_ID(1);
         bFriendsInOrder.setFriend_ID(testTwo);
-
 
         db.addRestaurantOrder(bResOrder,bFriendsInOrder);
         Log.d("Legg inn: ", "legger til bestilling");
@@ -134,6 +153,57 @@ public class OrderActivity extends AppCompatActivity{
         finish();
     }
 
+    public void showAttendingFriends(){
+        attendingFriendsView = findViewById(R.id.attending_friends_txtview);
 
+        String attendingFriends = " ";
+        if(attendingFriendsList != null){
+            for(Friend friend : attendingFriendsList){
+                if(friend.getAttending() != false){
+                    attendingFriends+= friend.getName()+" ";
+                    attendingFriends+= friend.getPhoneNumber()+" ";
+                    attendingFriends+= friend.getAttending()+". ";
+                }
+            }
+        }
 
+        attendingFriendsView.setText(attendingFriends);
+        Log.d("Venner som deltar array", attendingFriends);
+    }
+
+    public String selectedFriendsInOrderArray(){
+        ArrayList<FriendsInOrder> friendsInOrderList = new ArrayList<FriendsInOrder>();
+        for(Friend friend : attendingFriendsList){
+            if(friend.getAttending() != false){
+                FriendsInOrder oneFriend = new FriendsInOrder();
+                int friend_id = (int) (long) friend.get_ID();
+                oneFriend.setOrder_ID(id);
+                oneFriend.setFriend_ID(friend_id);
+                friendsInOrderList.add(oneFriend);
+            }
+        }
+
+        String out = " ";
+        for(FriendsInOrder friendsInOrder : friendsInOrderList){
+            out+="(( ORDER ID"+friendsInOrder.getOrder_ID()+" ";
+            out+=" FRIEND ID"+friendsInOrder.getFriend_ID()+" ))";
+        }
+        return out;
+    }
+
+    // retrieve bundled arraylist from AddfriendsInOrder
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == ac_friends && data != null) {
+                FriendH fh = (FriendH) data.getSerializableExtra("AttendingFriends");
+                if(fh != null && fh.getItems() != null)
+                    attendingFriendsList = fh.getItems();
+                    showAttendingFriends();
+                    Log.d("Friends in order array",selectedFriendsInOrderArray());
+                    Log.d("onActivityResult", "du er i activity result");
+            }
+        }
+    }
 }

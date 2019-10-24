@@ -7,6 +7,7 @@ public class Friend implements Serializable {
     private Long _ID;
     private String name;
     private String phoneNumber;
+    private Boolean attending;
 
     public Friend() {
     }
@@ -20,6 +21,12 @@ public class Friend implements Serializable {
         this._ID = _ID;
         this.name = name;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Friend(String name, String phoneNumber, Boolean attending) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.attending = attending;
     }
 
     public Long get_ID() {
@@ -45,4 +52,8 @@ public class Friend implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public Boolean getAttending() { return attending; }
+
+    public void setAttending(Boolean attending) { this.attending = attending; }
 }

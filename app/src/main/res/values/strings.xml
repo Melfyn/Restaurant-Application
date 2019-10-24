@@ -28,4 +28,5 @@
     <string name="add_order_btn">Legg til bestilling</string>
     <string name="delete_order_btn">Slett bestilling</string>
     <string name="add_friends_to_order_btn">Legg til venner</string>
+    <string name="attending_friends_txt">Inviterte venner: </string>
 </resources>

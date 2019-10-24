@@ -6,4 +6,5 @@
     <color name="colorToolbar">#0187C2</color>
     <color name="colorBackground">#FFFFFF</color>
     <color name="colorFont">#000000</color>
+    <color name="colorCheckboxBackground">#DADADA</color>
 </resources>

@@ -44,6 +44,7 @@ public class FriendsInOrderAdapter extends BaseAdapter {
         if(view == null)
             view = LayoutInflater.from(context).inflate(R.layout.adapter_friends_in_order,viewGroup,false);
         Friend friend = friends.get(i);
+        ((CheckBox) view.findViewById(R.id.friend_checkbox)).setChecked(friend.getAttending());
         ((TextView) view.findViewById(R.id.adapter_f_o_name)).setText(friend.getName());
         ((TextView) view.findViewById(R.id.adapter_f_o_phone)).setText(friend.getPhoneNumber());
         return view;

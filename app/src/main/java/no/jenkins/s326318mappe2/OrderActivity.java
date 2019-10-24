@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
+import no.jenkins.s326318mappe2.adapter.RestaurantSpinnerAdapter;
 import no.jenkins.s326318mappe2.classes.Friend;
 import no.jenkins.s326318mappe2.classes.FriendsInOrder;
 import no.jenkins.s326318mappe2.classes.Restaurant;
@@ -73,7 +74,7 @@ public class OrderActivity extends AppCompatActivity{
 
     private void loadRestaurant(){
         ArrayList<Restaurant> items = db.getRestaurants();
-        RestaurantAdapter adapter = new RestaurantAdapter(getApplicationContext(), items);
+        RestaurantSpinnerAdapter adapter = new RestaurantSpinnerAdapter(getApplicationContext(), items);
         Spinner resSpinner = findViewById(R.id.restaurant_spinner);
         resSpinner.setAdapter(adapter);
 
@@ -132,5 +133,7 @@ public class OrderActivity extends AppCompatActivity{
         setResult(Activity.RESULT_OK);
         finish();
     }
+
+
 
 }

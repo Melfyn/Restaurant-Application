@@ -91,7 +91,7 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Restaurant res = (Restaurant) adapterView.getSelectedItem();
-
+                  // store restaurant id from spinner
                   id = (int) (long) res.get_ID();
             }
 
@@ -119,23 +119,27 @@ public class OrderActivity extends AppCompatActivity {
         bResOrder.setTime(inputTime.getText().toString());
         bResOrder.setRestaurant_id(id);
 
-        //test
-        int testTwo = 2;
+        // note to self: add restaurant order before inserting friends in order to retrieve correct order id from getLastId method
+        db.addRestaurantOrder(bResOrder);
+
+        int order_id = db.getLastID();
 
         ArrayList<FriendsInOrder> friendsInOrderList = new ArrayList<FriendsInOrder>();
         for(Friend friend : attendingFriendsList){
             if(friend.getAttending() != false){
                 FriendsInOrder oneFriend = new FriendsInOrder();
                 int friend_id = (int) (long) friend.get_ID();
-                oneFriend.setOrder_ID(id);
+                oneFriend.setOrder_ID(order_id);
                 oneFriend.setFriend_ID(friend_id);
                 friendsInOrderList.add(oneFriend);
             }
         }
 
-        bFriendsInOrder.setFriend_ID(testTwo);
 
-        db.addRestaurantOrder(bResOrder,bFriendsInOrder);
+        for(FriendsInOrder friendInOrder : friendsInOrderList){
+            db.addFriendsInOrder(friendInOrder);
+        }
+
         Log.d("Legg inn: ", "legger til bestilling");
         setResult(Activity.RESULT_OK);
         finish();
@@ -153,6 +157,7 @@ public class OrderActivity extends AppCompatActivity {
         finish();
     }
 
+    // Method for populating Attending friends textfield
     public void showAttendingFriends(){
         attendingFriendsView = findViewById(R.id.attending_friends_txtview);
 
@@ -171,6 +176,7 @@ public class OrderActivity extends AppCompatActivity {
         Log.d("Venner som deltar array", attendingFriends);
     }
 
+    // Method for logging friends that will be inserted in help table FriendsInOrder
     public String selectedFriendsInOrderArray(){
         ArrayList<FriendsInOrder> friendsInOrderList = new ArrayList<FriendsInOrder>();
         for(Friend friend : attendingFriendsList){

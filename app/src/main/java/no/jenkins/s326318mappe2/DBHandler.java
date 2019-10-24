@@ -191,7 +191,31 @@ public class DBHandler extends SQLiteOpenHelper {
         return update;
     }
 
+    public void addRestaurantOrder(RestaurantOrder restaurantOrder){
+        SQLiteDatabase db = this.getWritableDatabase();
+        // add values to RestaurantOrder table
+        ContentValues values = new ContentValues();
+        values.put(ORDER_DATE, restaurantOrder.getDate());
+        values.put(ORDER_TIME, restaurantOrder.getTime());
+        values.put(ORDER_RESTAURANT, restaurantOrder.getRestaurant_id());
+        db.insert(TABLE_RESTAURANT_ORDERS, null, values);
 
+        db.close();
+    }
+
+    public void addFriendsInOrder(FriendsInOrder friendsInOrder){
+        SQLiteDatabase db = this.getWritableDatabase();
+        // add values to FriendsInOrder table
+        ContentValues valuesOrder = new ContentValues();
+        valuesOrder.put(F_ID, friendsInOrder.getFriend_ID());
+        valuesOrder.put(O_ID, friendsInOrder.getOrder_ID());
+        //  valuesOrder.put(O_ID, friendsInOrder.getOrder_ID());
+        db.insert(TABLE_FRIENDS_IN_ORDER,null, valuesOrder);
+
+        db.close();
+    }
+
+    /*
     public void addRestaurantOrder(RestaurantOrder restaurantOrder, FriendsInOrder friendsInOrder) {
         SQLiteDatabase db = this.getWritableDatabase();
         // add values to RestaurantOrder table
@@ -212,6 +236,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         db.close();
     }
+
+    */
 
     public ArrayList<RestaurantOrder> getRestaurantOrder(){
         ArrayList<RestaurantOrder> resOrderList = new ArrayList<RestaurantOrder>();

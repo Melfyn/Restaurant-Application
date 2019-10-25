@@ -10,8 +10,6 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "I BroadcastReceiver", Toast.LENGTH_SHORT).show();
 
-        /*Intent i = new Intent(context, MyService.class);
-        context.startService(i);*/
         Intent i = new Intent(context, SetPeriodicService.class);
         context.startService(i);
     }

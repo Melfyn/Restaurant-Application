@@ -9,7 +9,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         startService();
+        //testRetrieveTime();
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -214,5 +217,13 @@ public class MainActivity extends AppCompatActivity {
         if (alarm!= null) {
             alarm.cancel(pintent);
         }
+    }
+
+
+    //test kan fjernes når den er plassert der den skal.
+    public void testRetrieveTime(){
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String serviceTime =  sharedPreferences.getString("time_sms_service", "0");
+        Log.d("Tidspunkt ", serviceTime);
     }
 }

@@ -8,4 +8,10 @@
         android:background="@color/colorBackground"
         />
 
+    <EditTextPreference
+        android:key="time_sms_service"
+        android:title="@string/set_time_sms_title"
+        android:defaultValue="tt:mm"
+        android:summary="tt:mm" />
+
 </PreferenceScreen>

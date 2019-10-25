@@ -1,7 +1,9 @@
 package no.jenkins.s326318mappe2;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +13,7 @@ public class SetPreferencesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(android.R.id.content,new PrefsFragment()).commit();
     }
+
     public static class PrefsFragment extends PreferenceFragment {
         @Override
         public void onCreate(Bundle savedInstanceState) {

@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,9 @@ public class OrderActivity extends AppCompatActivity {
     EditText inputDate;
     EditText inputTime;
     TextView attendingFriendsView;
+    TextView dateView;
+    TextView timeView;
+    TextView restaurantView;
     Spinner inputRestaurant;
     private int id;
 
@@ -49,6 +54,10 @@ public class OrderActivity extends AppCompatActivity {
         inputDate = (EditText) findViewById(R.id.o_date);
         inputTime = (EditText) findViewById(R.id.o_time);
         inputRestaurant = (Spinner) findViewById(R.id.restaurant_spinner);
+        attendingFriendsView = (TextView) findViewById(R.id.attending_friends_txtview);
+        dateView = (TextView) findViewById(R.id.txtViewDate);
+        timeView = (TextView) findViewById(R.id.txtViewTime);
+        restaurantView = (TextView) findViewById(R.id.txtViewRestaurant);
         db = new DBHandler(this);
 
         if(getIntent().getExtras() != null){
@@ -61,15 +70,31 @@ public class OrderActivity extends AppCompatActivity {
 
         if(bResOrder != null){
             loadBResOrder();
+            // loads existing order. removes add order and add friends to order buttons
             View b = findViewById(R.id.add_order);
             b.setVisibility(View.GONE);
             View bf = findViewById(R.id.add_friends_order);
             bf.setVisibility(View.GONE);
+            // hide edit text to replace with text view.
+            View editTextDate = findViewById(R.id.o_date);
+            editTextDate.setVisibility(View.GONE);
+            View editTextTime = findViewById(R.id.o_time);
+            editTextTime.setVisibility(View.GONE);
+            View resSpinner = findViewById(R.id.restaurant_spinner);
+            resSpinner.setVisibility(View.GONE);
+
         } else {
+            // create new order. instance of both objects and removes delete button
             bResOrder = new RestaurantOrder();
             bFriendsInOrder = new FriendsInOrder();
             View b = findViewById(R.id.delete_order);
             b.setVisibility(View.GONE);
+            View dateView = findViewById(R.id.txtViewDate);
+            dateView.setVisibility(View.GONE);
+            View timeView = findViewById(R.id.txtViewTime);
+            timeView.setVisibility(View.GONE);
+            View restaurantView = findViewById(R.id.txtViewRestaurant);
+            restaurantView.setVisibility(View.GONE);
         }
         startKeyListeners();
         loadRestaurant();
@@ -77,8 +102,13 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     public void loadBResOrder(){
-        inputDate.setText(bResOrder.getTime());
-        inputTime.setText(bResOrder.getDate());
+        dateView.setText(bResOrder.getDate());
+        timeView.setText(bResOrder.getTime());
+        restaurantView.setText(bResOrder.getRestaurant().getName());
+        attendingFriendsView.setText("REEEEEEEEEEE");
+
+    //    inputDate.setText(bResOrder.getTime());
+    //    inputTime.setText(bResOrder.getDate());
     }
 
     private void loadRestaurant(){
@@ -159,7 +189,7 @@ public class OrderActivity extends AppCompatActivity {
 
     // Method for populating Attending friends textfield
     public void showAttendingFriends(){
-        attendingFriendsView = findViewById(R.id.attending_friends_txtview);
+   //     attendingFriendsView = findViewById(R.id.attending_friends_txtview);
 
         String attendingFriends = " ";
         if(attendingFriendsList != null){

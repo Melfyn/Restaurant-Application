@@ -21,6 +21,13 @@
         android:text="@string/date"
         android:textColor="@color/colorFont"></TextView>
 
+    <TextView
+        android:id="@+id/txtViewDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorFont">
+    </TextView>
+
     <EditText
         android:id="@+id/o_date"
         android:layout_width="match_parent"
@@ -31,6 +38,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time"
+        android:textColor="@color/colorFont">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtViewTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:textColor="@color/colorFont">
     </TextView>
 
@@ -50,7 +64,7 @@
     <TextView
         android:id="@+id/attending_friends_txtview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:textColor="@color/colorFont">
 
     </TextView>
@@ -61,6 +75,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
     </Button>
+
+    <TextView
+        android:text="@string/restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorFont">
+    </TextView>
+
+    <TextView
+        android:id="@+id/txtViewRestaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorFont">
+    </TextView>
 
     <Spinner
         android:id="@+id/restaurant_spinner"

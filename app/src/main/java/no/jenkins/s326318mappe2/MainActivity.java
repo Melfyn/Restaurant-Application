@@ -5,16 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import no.jenkins.s326318mappe2.adapter.FriendAdapter;
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
 import no.jenkins.s326318mappe2.adapter.RestaurantOrderAdapter;
+import no.jenkins.s326318mappe2.broadcastservice.MyService;
 import no.jenkins.s326318mappe2.classes.Friend;
 import no.jenkins.s326318mappe2.classes.Restaurant;
 import no.jenkins.s326318mappe2.classes.RestaurantOrder;
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService();
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -194,5 +197,22 @@ public class MainActivity extends AppCompatActivity {
     public void showFriendsInOrder(){
         Intent intent=new Intent(this,FriendsInOrderActivity.class);
         startActivity(intent);
+    }
+
+    // start broadcast service. might need to be placed in setpreferenceactivity
+    public void startService() {
+        Intent intent = new Intent();
+        intent.setAction("no.jenkins.s326318mappe2.broadcast");
+        sendBroadcast(intent);
+    }
+
+    public void stopPeriodic(View v) {
+        Intent i = new Intent(this, MyService.class);
+        PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
+        AlarmManager alarm =
+                (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        if (alarm!= null) {
+            alarm.cancel(pintent);
+        }
     }
 }

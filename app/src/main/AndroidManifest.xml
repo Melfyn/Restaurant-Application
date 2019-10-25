@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="no.jenkins.s326318mappe2">
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.SEND_SMS"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- Services and connected activites -->
         <activity android:name=".SetPreferencesActivity" />
+        <activity android:name=".broadcastservice.BroadcastResult"></activity>
+        <service android:name=".broadcastservice.MyService"></service>
+        <service android:name=".broadcastservice.SetPeriodicService"></service>
+        <receiver android:name=".broadcastservice.MyBroadcastReceiver">
+            <intent-filter>
+                <action android:name="no.jenkins.s326318mappe2.broadcast" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

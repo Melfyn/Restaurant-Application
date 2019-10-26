@@ -20,7 +20,6 @@ import no.jenkins.s326318mappe2.classes.RestaurantOrder;
 
 public class SetPeriodicService extends Service {
 
-    //Date currentTime = Calendar.getInstance().getTime();
     DBHandler db;
 
     @Nullable
@@ -53,7 +52,6 @@ public class SetPeriodicService extends Service {
 
     // test
     public Boolean compareDates(){
-        //   Calendar cal = Calendar.getInstance();
         db = new DBHandler(this);
 
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -63,7 +61,6 @@ public class SetPeriodicService extends Service {
 
         Log.d("DatoStreng", dato);
 
-        //   db = new DBHandler(this);
         ArrayList<RestaurantOrder> orders = db.getRestaurantOrder();
         for (RestaurantOrder order : orders){
             Log.d("Datoer fra db",order.getDate());

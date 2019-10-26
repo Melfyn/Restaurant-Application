@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item android:id="@+id/menu_orders"
             android:title="@string/orders"
-            android:icon="@drawable/ic_restaurant_24px" />
+            android:icon="@drawable/ic_date_range_black_24dp" />
         <item android:id="@+id/menu_friends"
             android:title="@string/friends"
             android:icon="@drawable/ic_person_24px" />

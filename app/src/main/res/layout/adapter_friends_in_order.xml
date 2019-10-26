@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:buttonTint="@color/colorPrimary"
         android:padding="10dp">
-
     </CheckBox>
 
     <TextView

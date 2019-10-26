@@ -33,6 +33,7 @@ import static java.lang.Long.parseLong;
 public class OrderActivity extends AppCompatActivity {
     private RestaurantOrder bResOrder;
     private FriendsInOrder bFriendsInOrder;
+    private ArrayList<FriendsInOrder> friends;
     private ArrayList<Friend> attendingFriendsList;
     EditText inputDate;
     EditText inputTime;
@@ -98,17 +99,24 @@ public class OrderActivity extends AppCompatActivity {
         }
         startKeyListeners();
         loadRestaurant();
-        showAttendingFriends();
+      //  showAttendingFriends();
     }
 
     public void loadBResOrder(){
         dateView.setText(bResOrder.getDate());
         timeView.setText(bResOrder.getTime());
         restaurantView.setText(bResOrder.getRestaurant().getName());
-        attendingFriendsView.setText("REEEEEEEEEEE");
 
-    //    inputDate.setText(bResOrder.getTime());
-    //    inputTime.setText(bResOrder.getDate());
+        String utstreng = "";
+        friends = db.getFriendsInOrder(bResOrder.get_ID());
+        for(FriendsInOrder friendsInOrder : friends){
+            utstreng+= db.findFriendName(friendsInOrder.getFriend_ID())+", ";
+            // " Vennid: "+ friendsInOrder.getFriend_ID()+".
+            //    utstreng+= "Ordreid: "+friendsInOrder.getOrder_ID()+". ";
+        }
+        
+        attendingFriendsView.setText(utstreng);
+
     }
 
     private void loadRestaurant(){
@@ -219,7 +227,7 @@ public class OrderActivity extends AppCompatActivity {
             }
         }
 
-        String out = " ";
+        String out = "";
         for(FriendsInOrder friendsInOrder : friendsInOrderList){
             out+="(( ORDER ID"+friendsInOrder.getOrder_ID()+" ";
             out+=" FRIEND ID"+friendsInOrder.getFriend_ID()+" ))";

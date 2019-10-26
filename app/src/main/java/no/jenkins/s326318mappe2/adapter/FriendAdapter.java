@@ -42,8 +42,9 @@ public class FriendAdapter extends BaseAdapter {
         if(view == null)
             view = LayoutInflater.from(context).inflate(R.layout.adapter_friend,viewGroup,false);
         Friend friend = items.get(i);
+        String phone = context.getString(R.string.ph_no);
         ((TextView) view.findViewById(R.id.adapter_f_name)).setText(friend.getName());
-        ((TextView) view.findViewById(R.id.adapter_f_phone)).setText(friend.getPhoneNumber());
+        ((TextView) view.findViewById(R.id.adapter_f_phone)).setText(phone+": "+friend.getPhoneNumber());
         return view;
     }
 }

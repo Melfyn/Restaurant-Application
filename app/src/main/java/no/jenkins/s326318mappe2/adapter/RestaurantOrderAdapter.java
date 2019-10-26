@@ -43,8 +43,10 @@ public class RestaurantOrderAdapter extends BaseAdapter {
         if(view == null)
             view = LayoutInflater.from(context).inflate(R.layout.adapter_order,viewGroup,false);
         RestaurantOrder resOrder = items.get(i);
-        ((TextView) view.findViewById(R.id.adapter_o_date)).setText(resOrder.getDate());
-        ((TextView) view.findViewById(R.id.adapter_o_time)).setText(resOrder.getTime());
+        String date = context.getString(R.string.date);
+        String time = context.getString(R.string.time);
+        ((TextView) view.findViewById(R.id.adapter_o_date)).setText(date+": "+resOrder.getDate());
+        ((TextView) view.findViewById(R.id.adapter_o_time)).setText(time+": "+resOrder.getTime());
         if(resOrder.getRestaurant() != null) {
             ((TextView) view.findViewById(R.id.adapter_o_restaurant)).setText(resOrder.getRestaurant().getName());
         } else {

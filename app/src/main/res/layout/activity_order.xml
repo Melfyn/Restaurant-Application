@@ -12,19 +12,22 @@
         android:layout_height="wrap_content"
         android:text="@string/orders"
         android:textSize="30dp"
-        android:textColor="@color/colorFont"
+        android:textColor="@color/colorPrimary"
         android:textAlignment="center"></TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/date"
-        android:textColor="@color/colorFont"></TextView>
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary"
+        android:padding="2dp"></TextView>
 
     <TextView
         android:id="@+id/txtViewDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:textColor="@color/colorFont">
     </TextView>
 
@@ -37,14 +40,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="@string/time"
-        android:textColor="@color/colorFont">
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <TextView
         android:id="@+id/txtViewTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:textColor="@color/colorFont">
     </TextView>
 
@@ -57,14 +63,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="@string/attending_friends_txt"
-        android:textColor="@color/colorFont">
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <TextView
         android:id="@+id/attending_friends_txtview"
         android:layout_width="match_parent"
         android:layout_height="38dp"
+        android:padding="2dp"
         android:textColor="@color/colorFont">
 
     </TextView>
@@ -73,20 +82,24 @@
         android:id="@+id/add_friends_order"
         android:text="@string/add_friends_to_order_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorSecondary">
     </Button>
 
     <TextView
         android:text="@string/restaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorFont">
+        android:padding="2dp"
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <TextView
         android:id="@+id/txtViewRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:textColor="@color/colorFont">
     </TextView>
 
@@ -99,11 +112,13 @@
         android:id="@+id/add_order"
         android:text="@string/add_order_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorSecondary"/>
 
     <Button
         android:id="@+id/delete_order"
         android:text="@string/delete_order_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorSecondary"/>
 </LinearLayout>

@@ -12,14 +12,16 @@
         android:layout_height="wrap_content"
         android:text="@string/restaurants"
         android:textSize="30dp"
-        android:textColor="@color/colorFont"
+        android:textColor="@color/colorPrimary"
         android:textAlignment="center"></TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="Navn"
-        android:textColor="@color/colorFont"></TextView>
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary"></TextView>
 
     <EditText
         android:id="@+id/r_name"
@@ -30,8 +32,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="@string/adress"
-        android:textColor="@color/colorFont">
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <EditText
@@ -43,8 +47,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="@string/ph_no"
-        android:textColor="@color/colorFont">
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <EditText
@@ -56,8 +62,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="@string/type"
-        android:textColor="@color/colorFont">
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <EditText
@@ -70,19 +78,25 @@
         android:id="@+id/add_restaurant"
         android:text="Legg til"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorSecondary"/>
 
     <Button
         android:id="@+id/update_restaurant"
         android:text="Oppdater"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorSecondary"/>
 
     <Button
         android:id="@+id/delete_restaurant"
         android:text="Slett restaurant"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorSecondary"/>
 
     <TextView
         android:layout_width="wrap_content"

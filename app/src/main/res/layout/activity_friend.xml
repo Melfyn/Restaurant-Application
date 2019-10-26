@@ -12,14 +12,16 @@
         android:layout_height="wrap_content"
         android:text="@string/friends"
         android:textSize="30dp"
-        android:textColor="@color/colorFont"
+        android:textColor="@color/colorPrimary"
         android:textAlignment="center"></TextView>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="Navn"
-        android:textColor="@color/colorFont"></TextView>
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary"></TextView>
 
     <EditText
         android:id="@+id/f_name"
@@ -30,8 +32,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="2dp"
         android:text="@string/ph_no"
-        android:textColor="@color/colorFont">
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary">
     </TextView>
 
     <EditText
@@ -44,17 +48,23 @@
         android:id="@+id/add_friend"
         android:text="Legg til"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorSecondary"/>
 
     <Button
         android:id="@+id/update_friend"
         android:text="Oppdater"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorSecondary"/>
 
     <Button
         android:id="@+id/delete_friend"
         android:text="Slett venn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorSecondary"/>
 </LinearLayout>

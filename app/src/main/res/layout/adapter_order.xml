@@ -6,25 +6,31 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/adapter_o_restaurant"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17dp"
+        tools:text="Restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp" />
+
+    <TextView
         android:textColor="#000"
         android:id="@+id/adapter_o_date"
         tools:text="Dato"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="2dp"/>
 
     <TextView
         android:textColor="#000"
         android:id="@+id/adapter_o_time"
         tools:text="Tid"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="2dp" />
 
-    <TextView
-        android:textColor="#000"
-        android:id="@+id/adapter_o_restaurant"
-        tools:text="Restaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
 
 </LinearLayout>

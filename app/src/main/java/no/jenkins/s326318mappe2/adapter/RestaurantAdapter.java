@@ -43,10 +43,13 @@ public class RestaurantAdapter extends BaseAdapter
         if(view == null)
             view = LayoutInflater.from(context).inflate(R.layout.adapter_restaurant,viewGroup,false);
         Restaurant res = items.get(i);
+        String adress = context.getString(R.string.adress);
+        String phone = context.getString(R.string.ph_no);
+        String type = context.getString(R.string.type);
         ((TextView) view.findViewById(R.id.adapter_r_name)).setText(res.getName());
-        ((TextView) view.findViewById(R.id.adapter_r_adress)).setText(res.getAdress());
-        ((TextView) view.findViewById(R.id.adapter_r_phone)).setText(res.getPhoneNumber());
-        ((TextView) view.findViewById(R.id.adapter_r_type)).setText(res.getType());
+        ((TextView) view.findViewById(R.id.adapter_r_adress)).setText(adress+": "+res.getAdress());
+        ((TextView) view.findViewById(R.id.adapter_r_phone)).setText(phone+": "+res.getPhoneNumber());
+        ((TextView) view.findViewById(R.id.adapter_r_type)).setText(type+": "+res.getType());
         return view;
     }
 }

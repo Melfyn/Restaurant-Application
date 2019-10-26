@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import no.jenkins.s326318mappe2.adapter.FriendAdapter;
 import no.jenkins.s326318mappe2.adapter.RestaurantAdapter;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         db = new DBHandler(this);
+
     }
 
     public void showFriends(){

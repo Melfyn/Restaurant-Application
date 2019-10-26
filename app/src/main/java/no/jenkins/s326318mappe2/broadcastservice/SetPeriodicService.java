@@ -6,14 +6,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.app.Service;
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import androidx.annotation.Nullable;
 
+import no.jenkins.s326318mappe2.DBHandler;
+import no.jenkins.s326318mappe2.classes.Restaurant;
+import no.jenkins.s326318mappe2.classes.RestaurantOrder;
+
 public class SetPeriodicService extends Service {
 
-    Date currentTime = Calendar.getInstance().getTime();
+    //Date currentTime = Calendar.getInstance().getTime();
+    DBHandler db;
 
     @Nullable
     @Override
@@ -27,18 +35,44 @@ public class SetPeriodicService extends Service {
         Intent i = new Intent(this, MyService.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, i, 0);
 
-        // Set the alarm to start at approximately the time set in set HOUR_OF_DAY and MINUTE
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 23);
-        calendar.set(Calendar.MINUTE, 20);
-        AlarmManager alarm =
-                (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintent);
-
+        if(compareDates() == true) {
+            // Set the alarm to start at approximately the time set in set HOUR_OF_DAY and MINUTE
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 01);
+            calendar.set(Calendar.MINUTE, 13);
+            AlarmManager alarm =
+                    (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintent);
+        }
 
 
 
         return super.onStartCommand(intent, flags, startId);
     }
+
+    // test
+    public Boolean compareDates(){
+        //   Calendar cal = Calendar.getInstance();
+        db = new DBHandler(this);
+
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int month = Calendar.getInstance().get(Calendar.MONTH)+1; // Month starts on zero.
+        int year = Calendar.getInstance().get(Calendar.YEAR);
+        String dato = day+"."+month+"."+year;
+
+        Log.d("DatoStreng", dato);
+
+        //   db = new DBHandler(this);
+        ArrayList<RestaurantOrder> orders = db.getRestaurantOrder();
+        for (RestaurantOrder order : orders){
+            Log.d("Datoer fra db",order.getDate());
+            if(order.getDate().equals(dato)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
+

@@ -31,5 +31,6 @@
     <string name="attending_friends_txt">Inviterte venner: </string>
     <string name="notification_title">Påminnelse om avtale</string>
     <string name="notification_txt">Du har en avtale i dag</string>
-    <string name="set_time_sms_title">Sett tidspunkt for sms-tjeneste</string>
+    <string name="set_time_sms_title">Tidspunkt for sms-tjeneste</string>
+    <string name="time_format_txt">Format på klokkeslett må være tt:mm</string>
 </resources>

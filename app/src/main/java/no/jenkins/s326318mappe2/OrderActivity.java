@@ -114,7 +114,7 @@ public class OrderActivity extends AppCompatActivity {
             // " Vennid: "+ friendsInOrder.getFriend_ID()+".
             //    utstreng+= "Ordreid: "+friendsInOrder.getOrder_ID()+". ";
         }
-        
+
         attendingFriendsView.setText(utstreng);
 
     }
@@ -203,9 +203,9 @@ public class OrderActivity extends AppCompatActivity {
         if(attendingFriendsList != null){
             for(Friend friend : attendingFriendsList){
                 if(friend.getAttending() != false){
-                    attendingFriends+= friend.getName()+" ";
-                    attendingFriends+= friend.getPhoneNumber()+" ";
-                    attendingFriends+= friend.getAttending()+". ";
+                    attendingFriends+= friend.getName()+", ";
+                //    attendingFriends+= friend.getPhoneNumber()+" ";
+                //    attendingFriends+= friend.getAttending()+". ";
                 }
             }
         }

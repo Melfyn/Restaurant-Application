@@ -41,14 +41,12 @@ public class MainActivity extends AppCompatActivity {
     int ac_order = 211;
     int ac_friend = 666;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService();
-        //testRetrieveTime();
+        startService(); // start broadcast service
 
         Toolbar myToolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
@@ -70,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menu_settings:
                         showSettings();
                         break;
-                    case R.id.menu_friendsinorder:
-                        showFriendsInOrder();
+               //     case R.id.menu_friendsinorder:
+               //         showFriendsInOrder();
 
                 }
                 return true;
@@ -79,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         db = new DBHandler(this);
+
+        showOrders(); // show orders when app starts
 
     }
 

@@ -42,4 +42,9 @@ public class MyService extends Service {
         notificationManager.notify(0, notifikasjon);
         return super.onStartCommand(intent, flags, startId);
     }
+
+    public String generateNotificationText(){
+
+        return "0";
+    }
 }

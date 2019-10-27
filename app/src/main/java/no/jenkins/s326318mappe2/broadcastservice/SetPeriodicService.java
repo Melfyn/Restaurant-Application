@@ -50,7 +50,7 @@ public class SetPeriodicService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-    // test
+    // method to check if there are any orders at current date
     public Boolean compareDates(){
         db = new DBHandler(this);
 

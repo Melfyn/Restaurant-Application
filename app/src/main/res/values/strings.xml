@@ -34,4 +34,8 @@
     <string name="set_time_sms_title">Tidspunkt for sms-tjeneste</string>
     <string name="time_format_txt">Format på klokkeslett må være tt:mm</string>
     <string name="add_friends_header">Legg til venner</string>
+    <string name="sms_permitted">SMS-permitted</string>
+    <string name="ok">Ok</string>
+    <string name="sms_permission_title">Tillat SMS</string>
+    <string name="sms_permission_txt">SMS tillat</string>
 </resources>

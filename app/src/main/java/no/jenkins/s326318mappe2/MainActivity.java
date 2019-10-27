@@ -1,22 +1,30 @@
 package no.jenkins.s326318mappe2;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     int ac_restaurant = 340;  // ac is short for activity code
     int ac_order = 211;
     int ac_friend = 666;
+
+    int MY_PERMISSIONS_REQUEST_SEND_SMS;
+    int ac_permission = 342;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
 
         showOrders(); // show orders when app starts
 
+
+        String smsPermission = android.Manifest.permission.SEND_SMS;
+        MY_PERMISSIONS_REQUEST_SEND_SMS = ContextCompat.checkSelfPermission(this, smsPermission);
+        if (MY_PERMISSIONS_REQUEST_SEND_SMS != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{smsPermission}, ac_permission);
+        }
+
+    //    SendSMS();
     }
 
     public void showFriends(){
@@ -198,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=new Intent(this,SetPreferencesActivity.class);
         startActivity(intent);
     }
-
+    //test method to display that friends in a order is inserted correctly
     public void showFriendsInOrder(){
         Intent intent=new Intent(this,FriendsInOrderActivity.class);
         startActivity(intent);
@@ -223,9 +243,33 @@ public class MainActivity extends AppCompatActivity {
 
 
     //test kan fjernes når den er plassert der den skal.
-    public void testRetrieveTime(){
+    public String RetrieveTimePreferences(){
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String serviceTime =  sharedPreferences.getString("time_sms_service", "0");
         Log.d("Tidspunkt ", serviceTime);
+        return serviceTime;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == ac_permission)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                Toast.makeText(this, getString(R.string.sms_permitted), Toast.LENGTH_LONG).show();
+            }
+            else
+            {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle(getString(R.string.sms_permission_title));
+                alertDialogBuilder.setMessage(getString(R.string.sms_permission_txt));
+                alertDialogBuilder.setCancelable(false);
+                alertDialogBuilder.setNeutralButton(getString(R.string.ok), (dialog, which) -> dialog.dismiss());
+                alertDialogBuilder.create().show();
+            }
+        }
+    }
+
 }

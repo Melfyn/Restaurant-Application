@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:title="@string/sms_service"
+        android:key="sms_service_boolean"
         android:defaultValue="false"
         android:summary=""
         android:background="@color/colorBackground"

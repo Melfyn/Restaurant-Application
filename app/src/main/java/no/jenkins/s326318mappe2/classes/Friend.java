@@ -12,6 +12,10 @@ public class Friend implements Serializable {
     public Friend() {
     }
 
+    public Friend(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public Friend(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;

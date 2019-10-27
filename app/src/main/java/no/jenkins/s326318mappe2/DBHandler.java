@@ -203,6 +203,19 @@ public class DBHandler extends SQLiteOpenHelper {
         return friend.getName();
     }
 
+    public String findFriendNumber(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_FRIENDS, new String[]{
+                        FRIEND_ID, FRIEND_NAME, FRIEND_PH_NO}, FRIEND_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null) cursor.moveToFirst();
+        Friend friend = new
+                Friend(Long.parseLong(cursor.getString(0)), cursor.getString(1),cursor.getString(2));
+        cursor.close();
+        db.close();
+        return friend.getPhoneNumber();
+    }
+
     public void addRestaurantOrder(RestaurantOrder restaurantOrder){
         SQLiteDatabase db = this.getWritableDatabase();
         // add values to RestaurantOrder table

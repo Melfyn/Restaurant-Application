@@ -38,8 +38,8 @@ public class SetPeriodicService extends Service {
             // Set the alarm to start at approximately the time set in set HOUR_OF_DAY and MINUTE
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 16);
-            calendar.set(Calendar.MINUTE, 37);
+            calendar.set(Calendar.HOUR_OF_DAY, 10);
+            calendar.set(Calendar.MINUTE, 30);
             AlarmManager alarm =
                     (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pintent);

@@ -241,15 +241,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    //test kan fjernes når den er plassert der den skal.
-    public String RetrieveTimePreferences(){
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String serviceTime =  sharedPreferences.getString("time_sms_service", "0");
-        Log.d("Tidspunkt ", serviceTime);
-        return serviceTime;
-    }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
